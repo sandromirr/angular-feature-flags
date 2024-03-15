@@ -3,13 +3,13 @@ import {MenubarModule} from 'primeng/menubar';
 import {MenuItem} from 'primeng/api';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-header-v2',
   standalone: true,
   imports: [MenubarModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  templateUrl: './header-v2.component.html',
+  styleUrl: './header-v2.component.scss'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderV2Component implements OnInit{
   public items: MenuItem[] = [];
 
   ngOnInit() {
@@ -19,7 +19,10 @@ export class HeaderComponent implements OnInit{
         },
         {
           	label: 'Products',
-        }
+        },
+		{
+			label: 'About us',
+	  	}
     ];
   }
 }

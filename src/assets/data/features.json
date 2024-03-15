@@ -1,10 +1,10 @@
 {
     "features":[
         {
-            "name": "feature01"
+            "name": "header-v2"
         },
         {
-            "name": "feature02"
+            "name": "footer-v2"
         }
     ]
 }

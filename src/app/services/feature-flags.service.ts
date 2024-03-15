@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FeatureFlag } from '../shared/feature-flag.model';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
 @Injectable({
@@ -10,17 +11,23 @@ export class FeatureFlagsService {
 
   constructor(private httpClient: HttpClient) {
     this.loadFeatureFlags();
-    this.featureFlags.subscribe((data) => {
-      console.log(data.features);
-    })
   }
 
   private loadFeatureFlags(): void {
     this.httpClient.get('./assets/data/features.json')
-      .subscribe(flags => this.featureFlags.next(flags));
+      .subscribe(response => this.featureFlags.next(response));
   }
 
   isFeatureEnabled(featureName: string): Observable<boolean> {
-    return this.featureFlags.pipe(map(flags => flags[featureName] === true));
+    return this.featureFlags.pipe(map((response: any) => {
+      if(response['features'] == null){
+        return false;
+      } 
+      const flags: FeatureFlag[] = response.features;
+      if(flags == null){
+        return false;
+      }
+      return flags.filter(x => x.name == featureName).length > 0;
+    }));
   }
 }

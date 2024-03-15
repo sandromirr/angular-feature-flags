@@ -1,1 +1,3 @@
-<app-header></app-header>
+<app-header *ngIf="!(isFeatureOneEnabled$ | async)"></app-header>
+<app-header-v2 *ngIf="isFeatureOneEnabled$ | async"></app-header-v2>
+<app-footer></app-footer>
