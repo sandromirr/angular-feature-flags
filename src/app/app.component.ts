@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderV2Component } from './header-v2/header-v2.component';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { FeatureFlagDirective } from './directives/feature-flag.directive';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
     HeaderComponent,
     HeaderV2Component,
     FooterComponent,
+    FeatureFlagDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -23,11 +25,7 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'angular-feature-flags';
 
-  public isFeatureOneEnabled$: Observable<boolean> | undefined;
-
   constructor(public featureFlagService: FeatureFlagsService){}
 
-  ngOnInit() {
-    this.isFeatureOneEnabled$ = this.featureFlagService.isFeatureEnabled('header-v2');
-  }
+  ngOnInit() {}
 }

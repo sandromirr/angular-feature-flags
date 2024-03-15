@@ -1,3 +1,6 @@
-<app-header *ngIf="!(isFeatureOneEnabled$ | async)"></app-header>
-<app-header-v2 *ngIf="isFeatureOneEnabled$ | async"></app-header-v2>
+<app-header *appIfFeatureFlag="'header-v1'; else: defaultTemplate"></app-header>
+<app-header-v2 *appIfFeatureFlag="'header-v2'; else: defaultTemplate"></app-header-v2>
+
+<ng-template #defaultTemplate>Default template</ng-template>
+
 <app-footer></app-footer>
